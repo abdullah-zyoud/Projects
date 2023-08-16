@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/add_to_cart.css' %}"
+    />
+
+    <title>Checkout</title>
+    <style>
+      body {
+        background-image: url("../static/img/p10.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navb" class="navbar navbar-expand-lg navbar-light bg-primary">
+      <img src="../static/img/Logo1.png" alt="" />
+      <div class="divnav"></div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/user">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/cart">My Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/bookmark">My bookmarked</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/view_orders">My Orders</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/logout">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
+          <div class="card border-0">
+            <div class="row justify-content-center mb-4 p-4">
+              <h4>Credit Card Checkout</h4>
+            </div>
+            <form action="/order" method="post">
+              {% csrf_token %}
+              <div class="row justify-content-center">
+                <p class="left col-sm-3 text-muted text-md mt-2">Total Price</p>
+                <p class="col-sm-2 mt-2">{{cart.total}}</p>
+              </div>
+              <div class="row justify-content-center">
+                <p class="left col-sm-3 text-muted text-md mt-2">
+                  Number of cars
+                </p>
+                <p class="col-sm-2 mt-2">{{cars}}</p>
+              </div>
+              <div class="row mb-3 justify-content-center">
+                <label for="cr_no" class="col-sm-3 col-form-label text-muted"
+                  >Card Number</label
+                >
+                <div class="col-sm-5 mx-2">
+                  <input
+                    type="number"
+                    name="card-num"
+                    class="form-control"
+                    placeholder="0000 0000 0000 0000"
+                    id="cr_no"
+                    minlength="16"
+                    maxlength="16"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 justify-content-center">
+                <label for="exp" class="col-sm-3 col-form-label text-muted"
+                  >Expiry Date</label
+                >
+                <div class="col-sm-5 mx-2">
+                  <input
+                    type="text"
+                    name="exp"
+                    class="form-control"
+                    placeholder="MM/YY"
+                    size="6"
+                    id="exp"
+                    minlength="5"
+                    maxlength="5"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 justify-content-center">
+                <label for="cvv" class="col-sm-3 col-form-label text-muted"
+                  >CVV/CVC</label
+                >
+                <div class="col-sm-5 mx-2">
+                  <input
+                    type="text"
+                    name="cvv"
+                    class="form-control"
+                    placeholder="000"
+                    size="1"
+                    id="cvv"
+                    minlength="3"
+                    maxlength="3"
+                  />
+                </div>
+              </div>
+              <div
+                style="
+                  color: red;
+                  width: 30%;
+                  margin: auto;
+                  margin-top: 1em;
+                  text-align: center;
+                "
+                class="error"
+              >
+                {% if messages %}
+                <ul style="list-style: none" class="ulError">
+                  {% for message in messages %}
+                  <li
+                    {%
+                    if
+                    message.tags
+                    %}
+                    class="{{ message.tags }}"
+                    {%
+                    endif
+                    %}
+                  >
+                    * {{ message }}
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                <button class="btn btn-outline-secondary w-100" type="submit">
+                  Checkout
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

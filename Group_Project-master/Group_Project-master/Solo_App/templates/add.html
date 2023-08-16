@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Car</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add.css' %}">
+    <style>
+       body {
+  background-image: url('../static/img/CarHome.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+        
+        </style>
+</head>
+<body>
+    <nav id="navb"  class="navbar navbar-expand-lg navbar-light bg-primary ">
+    <img  src="../static/img/Logo1.png" alt="">
+    <div class="divnav"></div>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/admin">Back</a>
+        </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/logout">Log Out</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+      
+  <div style="color: red; width: 30%; margin: auto; margin-top: 1em; text-align: center;" class="error">
+    {% if messages %}
+    <ul style="list-style: none;" class="ulError" >
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>* {{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+    <form action="/addCar" method="post"> {% csrf_token%}
+      <div class="addForm">
+    <table>
+        
+           
+            <tr>
+                <td>Name</td>
+                <td><input type="text" class="btn btn-outline-dark" name="name"></td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td><input type="text" class="btn btn-outline-dark" name="model"></td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td><input type="text" class="btn btn-outline-dark" name="color"></td>
+            </tr>
+            <tr>
+                <td>Fuel Type</td>
+                <td>
+                <select style="width: 100%;" class="btn btn-outline-dark" name="fuelType" id="cars" >
+                  <option name="fuelType">petrol</option>
+                  <option name="fuelType">Electricity</option>
+                  <option name="fuelType">diesel</option>
+                
+                </select>
+              </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="text" class="btn btn-outline-dark" name="price"></td>
+            </tr>
+          
+               
+       
+    </table>
+
+    <button style="color: white;"  type="submit" class="btn btn-outline-dark" >Submit</button>
+  </div>
+</form>
+
+</body>
+</html>

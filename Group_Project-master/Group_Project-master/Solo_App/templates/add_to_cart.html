@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/add_to_cart.css' %}"
+    />
+
+    <title>Add to cart</title>
+    <style>
+      body {
+        background-image: url("../static/img/p10.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navb" class="navbar navbar-expand-lg navbar-light bg-primary">
+      <img src="../static/img/Logo1.png" alt="" />
+      <div class="divnav"></div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/user">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/cart">My Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/bookmark">My bookmarked</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/view_orders">My Orders</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/logout">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
+          <div class="card border-0">
+            <div class="row justify-content-center mb-4 p-4">
+              <h4 class="text-muted">Add to your cart</h4>
+            </div>
+            <form action="/addToCart2/{{car.id}}" method="post">
+              {% csrf_token %}
+              <div class="container mb-4">
+                <img
+                  class="icon"
+                  src="../static\img\calender.PNG"
+                  alt="calender"
+                />
+                <div>
+                  <label for="date1" class="col-form-label fw-bold text-muted"
+                    >From</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date1"
+                    name="date1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="date2" class="col-form-label fw-bold text-muted"
+                    >To</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date2"
+                    name="date2"
+                    required
+                  />
+                </div>
+              </div>
+              <div
+                style="
+                  color: red;
+                  width: 30%;
+                  margin: auto;
+                  margin-top: 1em;
+                  text-align: center;
+                "
+                class="error"
+              >
+                {% if messages %}
+                <ul style="list-style: none" class="ulError">
+                  {% for message in messages %}
+                  <li
+                    {%
+                    if
+                    message.tags
+                    %}
+                    class="{{ message.tags }}"
+                    {%
+                    endif
+                    %}
+                  >
+                    * {{ message }}
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+
+              <div class="row mb-5 row justify-content-center">
+                <img class="icon1" src="../static\img\coins.PNG" alt="coins" />
+                <p class="col-sm-2 text-muted text-md mt-5">${{car.price}}</p>
+                <p class="col-sm-2 mt-5">total price</p>
+              </div>
+              <div
+                class="btn-group btn-group-lg mt-4 mybtn"
+                role="group"
+                aria-label="Large button group"
+              >
+                <button type="submit" class="btn btn-outline-secondary">
+                  Add to cart
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onclick="document.location='/cart'"
+                >
+                  My cart
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onclick="document.location='/user'"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+
+
+
+#navb {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
+}
+
+nav img {
+    height: 50px;
+
+}
+
+#ul {
+    color: black;
+}
+
+.divnav {
+    height: 100%;
+    width: 500px;
+
+}
+
+.underdiv {
+    height: 70px;
+    width: 500px;
+}
+
+
+.contact{
+    color: black ;
+    font-weight: 500;
+}
+button{
+    width: 200px;
+    box-shadow: 2px 4px;
+    font-weight: 800;
+    
+
+}
+
+h6{
+    text-align: center;
+    color: white;
+}
+footer{
+    display: grid;
+    background-color: rgba(0,0,0,.5); 
+}
+
+#github{
+   color: black;
+    text-decoration: none;
+    font-weight: 600;
+}

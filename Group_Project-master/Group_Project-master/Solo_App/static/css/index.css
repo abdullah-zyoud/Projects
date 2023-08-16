@@ -1,0 +1,47 @@
+ 
+      #navb{
+        width: 100%;
+        position: fixed;
+        top: 0;
+        font-weight: 400;
+       
+        
+       
+      }
+      nav img {
+            height: 50px;
+
+        }
+        .divnav {
+            height: 100%;
+            width: 500px;
+
+        }
+        .loginform{
+          width: 60%;
+           margin: auto; 
+          
+        }
+        .logform{
+          margin: auto;
+          width: 50%;
+          padding: 20px;
+         
+          margin-top: 10%;
+          background-color: rgba(230, 221, 221, 0.4);
+
+        }
+        input{
+          box-shadow: 2px 4px;
+          
+
+        }
+        .forgit{
+          color: black;
+        }
+        .ulError{
+          color: red; 
+          list-style-type: none;
+
+        }
+     
